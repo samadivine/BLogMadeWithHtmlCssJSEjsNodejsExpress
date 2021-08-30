@@ -9,9 +9,25 @@
                 <%=storebody%>
             </p>
         </div>
+        <a href=""></a>
+
+        <a id="delete" data-doc=<%=id %> > <button class="btn btn-primary mt-3">delete</button></a>
 
     </div>
 
+    <script>
+        const deletebtn = document.querySelector('a#delete');
+        deletebtn.addEventListener('click', (e) => {
+            const endpoint = `/post/${deletebtn.dataset.doc}`
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+                .then((response) => response.json())
+                .then((data) => window.location.href = data.redirect)
+                .catch((err) => console.log(err))
 
+
+        })
+    </script>
 
     <%- include('./partials/footer') -%>
